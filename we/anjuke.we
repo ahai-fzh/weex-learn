@@ -14,6 +14,18 @@
                 <text>地图</text>
             </div>
         </div>
+        <div class="tab">
+            <div repeat="{{items}}" style="margin-top: 36px;">
+                <div style="flex-direction: row;">
+                    <div repeat="{{data}}" style="flex: 1;">
+                        <div style="justify-content: center;align-items: center;">
+                            <image style="width: 90px;height: 90px;" src="{{icon}}"></image>
+                            <text style="font-size: 32px;color: #393939;margin-top: 10px;">{{name}}</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <style>
@@ -71,7 +83,27 @@
             query_icon: api.urls.icon_base_url+"query_search_40px.png",
             qrcode_icon: api.urls.icon_base_url+"scan_48px.png",
             map_icon: api.urls.icon_base_url+"locate_48px.png",
-            house_icon: api.urls.icon_base_url+"house_90px.png"
+            house_icon: api.urls.icon_base_url+"house_90px.png",
+            items: [
+                {
+                    data: [
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"}
+                    ]
+                },
+                {
+                    data: [
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
+                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"}
+                    ]
+                }
+            ]
         },
         methods : {
             getQueryIcon: function () {
