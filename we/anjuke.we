@@ -1,0 +1,104 @@
+<template>
+    <div class="rootview">
+        <div class="nav">
+            <div class="city">
+                <text>上海△</text>
+            </div>
+            <div class="title">
+                <image src="{{query_icon}}" class="query_icon"></image>
+                <text>挑好房，上安居客</text>
+                <image src="{{qrcode_icon}}" class="scan_icon"></image>
+            </div>
+            <div class="map">
+                <image src="{{map_icon}}" class="map_icon"></image>
+                <text>地图</text>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    .nav {
+        flex-direction: row;
+        height: 100px;
+        background-color: #73b207;
+    }
+    .city {
+        flex: 0.3;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        color: white;
+    }
+    .title {
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        margin: 10px;
+        flex-direction: row;
+        color: rgb(133, 138, 145);
+    }
+    .map {
+        flex: 0.3;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: #FFF;
+        font-size: 32px;
+        flex-direction: row;
+    }
+    .query_icon {
+        width: 44px;
+        height: 44px;
+        margin-left: 10px;
+    }
+    .scan_icon {
+        width: 44px;
+        height: 44px;
+        margin-right: 10px;
+    }
+    .map_icon {
+        width: 30px;
+        height: 38px;
+        margin-right: 10px;
+    }
+</style>
+<script>
+    var api = require("../js/api.js");
+    module.exports = {
+        data : {
+            query_icon: api.urls.icon_base_url+"query_search_40px.png",
+            qrcode_icon: api.urls.icon_base_url+"scan_48px.png",
+            map_icon: api.urls.icon_base_url+"locate_48px.png",
+            house_icon: api.urls.icon_base_url+"house_90px.png"
+        },
+        methods : {
+            getQueryIcon: function () {
+                return this.query_icon;
+            }
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

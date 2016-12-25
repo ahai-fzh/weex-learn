@@ -1,0 +1,56 @@
+<template>
+    <div style="flex-direction: column;">
+        <slider class="slider" interval="{{intervalValue}}" auto-play="{{isAutoPlay}}">
+            <div class="slider-pages" repeat="{{itemList}}" onclick="goWeexSite">
+                <image class="thumb" src="{{pictureUrl}}"></image>
+                <text class="title">{{title}}</text>
+            </div>
+        </slider>
+    </div>
+</template>
+<style>
+    .thumb {
+        width: 60px;
+        height: 60px;
+    }
+
+    .title {
+        text-align: center;
+        flex: 1;
+        color: royalblue;
+        font-size: 30px;
+    }
+
+    .slider {
+        margin: 18px;
+        width: 714px;
+        height: 230px;
+        background: #eef2ff;
+    }
+
+    .slider-pages {
+        flex-direction: row;
+        width: 714px;
+        height: 200px;
+        background: #b5ffb7;
+    }
+</style>
+<script>
+    module.exports = {
+        data: {
+            intervalValue: "1000",
+            isShowIndicators: "true",
+            isAutoPlay: "true",
+            itemList: [
+                {title: 'java', pictureUrl: 'http://t.cn/RGE3uo9'},
+                {title: 'Object C', pictureUrl: 'http://t.cn/RGE31hq'},
+                {title: 'JavaScript', pictureUrl: 'http://t.cn/RGE3AJt'}
+            ]
+        },
+        methods: {
+            goWeexSite: function () {
+                this.$openURL('http://alibaba.github.io/weex/')
+            }
+        }
+    }
+</script>

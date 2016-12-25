@@ -1,0 +1,5 @@
+<template>
+    <div>
+        <text>My name is test.we!</text>
+    </div>
+</template>
