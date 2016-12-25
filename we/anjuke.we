@@ -1,5 +1,6 @@
 <template>
     <div class="rootview">
+        <!--标题-->
         <div class="nav">
             <div class="city">
                 <text>上海△</text>
@@ -14,6 +15,7 @@
                 <text>地图</text>
             </div>
         </div>
+        <!--网格内容-->
         <div class="tab">
             <div repeat="{{items}}" style="margin-top: 36px;">
                 <div style="flex-direction: row;">
@@ -26,6 +28,22 @@
                 </div>
             </div>
         </div>
+        <!--跑马灯效果-->
+        <div style="flex-direction: row;height: 120px;background-color: #e7faf0;margin-top: 36px;align-items: center;">
+            <div style="flex: 0.3;justify-content: center;align-items: center;">
+                <image style="width: 90px;height: 90px;" src="{{house_icon}}"></image>
+            </div>
+            <div style="flex: 1;">
+                <wxc-marquee id="marquee" style="height: {{marquee.height * 3}};"
+                             step="{{marquee.height * 3}}" count="{{marquee.list.length}}" interval="{{marquee.interval}}" duration="{{marquee.duration}}">
+                    <div repeat={{marquee.list}} style="height: {{marquee.height * 3}};justify-content: center;">
+                        <text style="height: {{marquee.height}}; color: rgb(60, 118, 61); font-size: 28px;margin-bottom: 5px;overflow: hidden;">{{text1}}</text>
+                        <text style="height: {{marquee.height}}; color: rgb(60, 118, 61); font-size: 28px;margin-top: 5px;max-lines: 1;overflow: hidden;">{{text2}}</text>
+                    </div>
+                </wxc-marquee>
+            </div>
+        </div>
+
     </div>
 </template>
 <style>
@@ -77,37 +95,57 @@
     }
 </style>
 <script>
+    require('weex-components');
     var api = require("../js/api.js");
     module.exports = {
         data : {
             query_icon: api.urls.icon_base_url+"query_search_40px.png",
             qrcode_icon: api.urls.icon_base_url+"scan_48px.png",
             map_icon: api.urls.icon_base_url+"locate_48px.png",
-            house_icon: api.urls.icon_base_url+"house_90px.png",
+            house_icon: api.urls.house_url,
+            // 网格形式数据
             items: [
                 {
                     data: [
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"}
+                        {name:"新房", icon:api.urls.house_url},
+                        {name:"二手房", icon:api.urls.house_url},
+                        {name:"租房", icon:api.urls.house_url},
+                        {name:"商铺写字楼", icon:api.urls.house_url},
                     ]
                 },
                 {
                     data: [
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"},
-                        {name:"新房", icon:api.urls.icon_base_url+"house_90px.png"}
+                        {name:"卖房", icon:api.urls.house_url},
+                        {name:"海外地产", icon:api.urls.house_url},
+                        {name:"帮你找房", icon:api.urls.house_url},
+                        {name:"校区房价", icon:api.urls.house_url},
                     ]
                 }
-            ]
+            ],
+            // 跑马灯数据
+            marquee: {
+                height: 30,
+                duration: 1500,
+                interval: 2000,
+                list: [
+                    {text1: '“大七环”即将贯通 快来香河看看联排别墅', text2: '一城打造 半城浓荫—北京城建琨廷'},
+                    {text1: '匆匆一瞥之坐落在雁栖河畔的顶秀美泉小镇', text2: '孙河争霸 看首开琅樾凭何抢占市场(组图)'},
+                    {text1: '未来不是梦 燕西华府四部曲(组图)', text2: '旧宫"桃花源"院落 浅谈中信墅270㎡户型(组图)'},
+                    {text1: '“杉杉”来迟 聚焦佳龙88平细作三居户型(组图)', text2: '永定河孔雀城英国宫英伦大盘献礼京南(组图)'},
+                ]
+            }
         },
-        methods : {
-            getQueryIcon: function () {
-                return this.query_icon;
+        ready: function() {
+            this.initMarquee('marquee');
+        },
+        methods: {
+            initMarquee: function(id) {
+                var self = this;
+
+                var $marquee = this.$vm(id);
+                $marquee.$on('change', function() {
+                    console.log('marquee change');
+                });
             }
         }
     }
